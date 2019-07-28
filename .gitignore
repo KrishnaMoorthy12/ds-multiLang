@@ -1,4 +1,3 @@
-*.exe
 # Assembled binaries and object directories
 obj/
 a.out
