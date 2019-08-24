@@ -1,47 +1,54 @@
 #include "stdio.h"
 #include "stdlib.h"
 
-struct node {
+struct node{
   int data;
   struct node *next;
 };
 
 typedef struct node list;
 
-void create(list *list1) {
-  int n;
-  // list start = list1;
-  printf("\n%s", "Enter the number of elements: ");
-  scanf("%d", &n);
-  printf("\nEnter the elements:\n");
-  for(int i = 0; i < n; i++) {
-    scanf("%d", &list1->data);
-    list1 = list1->next;
-  }
-  printf("List was created succesfully.");
+list* createNode() {
+  list *newNode = (list*)malloc(sizeof(list));
+  printf("\nEnter the value: ");
+  scanf("%d", &newNode->data);
+  newNode->next = NULL;
+  return newNode;
 }
 
-void insert(list *list1){
-  printf("Enter the element: ");
-  scanf("%d", &list1->data);
-  printf("\nElement added succesfully.");
+void append(list *list1){
+  list *tmp = list1;
+  for (; tmp->next != NULL; tmp = tmp->next);
+  tmp -> next = createNode();
+  printf("Element added succesfully.");
+}
+
+list* newList() {
+  int n;
+  list *newList = (list*)malloc(sizeof(list));
+  printf("\nHow many elements do you want to add?");
+  scanf("%d", &n);
+  for (int i = 0; i < n; i++) {
+    append(newList);
+  }
+  printf("\n\nList created succesfully.");
+  return newList;
 }
 
 void pop(list *list1){
-  for(;list1->next!=NULL; list1=list1->next){
-    if ((list1->next)->next == NULL){
-      printf("Popped element: ", list1->data);
-      list1->next = NULL;
-    }
-  }
+  list *tmp = list1;
+  for(;tmp->next->next != NULL; tmp = tmp->next);
+  printf("Popped element: %d", tmp->next->data);
+  free(tmp->next);
+  tmp->next = NULL;
 }
 
 void display(list *list1){
   list *temp = list1;
   printf("\nThe elements are: ");
   while(temp!=NULL){
-    printf("%d", list1->data);
-    if (list1->next != NULL)
+    printf("%d", temp->data);
+    if (temp->next != NULL)
       printf(", ");
     else
       printf(".");
@@ -50,9 +57,10 @@ void display(list *list1){
 }
 
 int main(int argc, char const *argv[]) {
+
+  list *list1;
+  list1 = (list*)malloc(sizeof(list));
   int ch;
-  static int a = -1;
-  list *list1[5];
   while (1) {
     printf("\n==== MENU ====");
     printf("\n1. Create");
@@ -64,22 +72,21 @@ int main(int argc, char const *argv[]) {
     scanf("%d", &ch);
     switch (ch) {
       case 1:
-        printf("\n> Create new Singly Linked List...");
-        a++;
-        list1[a] = (list*)malloc(sizeof(list));
-        create(list1[a]);
+        printf("\nCreate new Singly Linked List...");
+        list *list1 = newList();
         break;
       case 2:
-        printf("\n> Insert a new node...");
-        insert(list1[a]);
+        printf("\nInsert a new node...");
+        append(list1);
         break;
       case 3:
-        pop(list1[a]);
+        pop(list1);
         break;
       case 4:
-        display(list1[a]);
+        display(list1);
         break;
       case 5:
+      case 0:
         return 0;
       default:
         printf("Invalid input.");
