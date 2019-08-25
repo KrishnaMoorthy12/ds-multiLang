@@ -35,19 +35,7 @@ list* newList() {
   printf("\n\nList created succesfully.");
   return newList;
 }
-<<<<<<< HEAD
 
-=======
-/*
-void dequeue(list *list1){
-  list *tmp = list1;
-  list1 = list1->next;
-  tmp -> next = NULL;
-  free(tmp);
-  printf("%d have left the queue.", list1->data);
-}
-*/
->>>>>>> 95ae851cea4dc6dae5f1a24ea2268b5f58cbb677
 void dequeue(list *list1){
   if (list1 == NULL){
     printf("\nThe queue is empty.");
