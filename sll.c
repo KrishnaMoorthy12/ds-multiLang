@@ -28,9 +28,8 @@ void insert(list *list1){
   printf("\nWhere do you want to insert? Before ");
   scanf("%d", &key);
   list *tmp = list1;
-  while (tmp->next->next!=NULL && key != tmp->next->data){
+  while (tmp->next->next!=NULL && key != tmp->next->data)
     tmp = tmp ->next;
-  }
   if (tmp -> next ->data == key){
     list *tmp1 = createNode();
     tmp1 -> next = tmp ->next;
@@ -43,13 +42,12 @@ void insert(list *list1){
 list* newList() {
   int n;
   list *newList = (list*)malloc(sizeof(list));
-  printf("\nHow many elements do you want to add?");
+  printf("\nHow many elements do you want to add? ");
   scanf("%d", &n);
   newList = createNode();
   printf("Element added succesfully.");
-  for (int i = 0; i < n-1; i++) {
+  for (int i = 0; i < n-1; i++)
     append(newList);
-  }
   printf("\n\nList created succesfully.");
   return newList;
 }
@@ -67,13 +65,12 @@ void delete(list *list1){
   printf("\nWhat do you want to remove? ");
   scanf("%d", &key);
   list *tmp = list1;
-  while (tmp->next!=NULL && key != tmp->data){
+  while (tmp->next!=NULL && key != tmp->data)
     tmp = tmp ->next;
-  }
+
   //needs memory optimization
-  if (tmp -> data == key){
+  if (tmp -> data == key)
     tmp -> next = tmp -> next ->next;
-  }
   else
     printf("\nElement not found.");
 }
@@ -131,6 +128,7 @@ int main(int argc, char const *argv[]) {
         break;
       case 7:
       case 0:
+        printf("\nExiting...\n");
         return 0;
       default:
         printf("Invalid input.");
