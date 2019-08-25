@@ -89,7 +89,6 @@ void display(list *list1){
 }
 
 int main(int argc, char const *argv[]) {
-
   list *list1;
   list1 = (list*)malloc(sizeof(list));
   int ch;
