@@ -141,6 +141,8 @@ int main() {
       display(root);
       break;
     case 0:
+      printf("\nPress any key exit...");
+      getch();
       return (0);
       break;
     default:
@@ -148,5 +150,4 @@ int main() {
       break;
     }
   }
-  getch();
 }
